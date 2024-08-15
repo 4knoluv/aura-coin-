@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Coin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #1e1e1e;
+            padding: 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+            color: #f5a623;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .main-banner {
+            padding: 50px 20px;
+            background-image: url('your-aura-coin-image.png');
+            background-size: cover;
+            background-position: center;
+        }
+        .main-banner h2 {
+            font-size: 28px;
+            margin: 20px 0;
+        }
+        .cta-button {
+            background-color: #f5a623;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        section {
+            padding: 40px 20px;
+        }
+        footer {
+            background-color: #1e1e1e;
+            padding: 10px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #f5a623;
+        }
+        p {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .redirect-button {
+            background-color: #f5a623;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .error-message {
+            color: red;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aura Coin</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#tokenomics">Tokenomics</a>
+            <a href="#buy">Buy Aura Coins</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="main-banner">
+        <h2>Capture the Essence, Own the Vibe</h2>
+        <button class="cta-button" onclick="window.location='#buy'">Buy Aura Coins</button>
+    </div>
+
+    <section id="about">
+        <h2>About Aura Coin</h2>
+        <p>Aura Coin is a unique cryptocurrency that captures the essence of different auras. Collect and trade coins of various colors, each representing a different energy or mood.</p>
+    </section>
+
+    <section id="tokenomics">
+        <h2>Tokenomics</h2>
+        <p>Supply: 7.77 million coins</p>
+        <p>Staking rewards, burning mechanisms, and more!</p>
+    </section>
+
+    <section id="buy">
+        <h2>Buy Aura Coins</h2>
+        <form id="buyForm" onsubmit="processTransaction(event)">
+            <label for="amount">Amount to Buy (max 1000):</label>
+            <input type="number" id="amount" name="amount" min="1" max="1000" required>
+            <button type="submit" class="cta-button">Buy Now</button>
+            <p id="errorMessage" class="error-message"></p>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2024 Aura Coin. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function processTransaction(event) {
+            event.preventDefault();
+
+            const amount = parseInt(document.getElementById('amount').value);
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = '';
+
+            if (amount > 1000) {
+                errorMessage.textContent = 'Error: You cannot purchase more than 1000 Aura Coins at once.';
+                return;
+            }
+
+            // Simulate checking card balance
+            const userBalance = simulateCardBalanceCheck();
+            const costPerCoin = 1; // Assume each coin costs 1 unit of currency
+            const totalCost = amount * costPerCoin;
+
+            if (userBalance < totalCost) {
+                errorMessage.textContent = 'Error: Insufficient funds on your card.';
+                return;
+            }
+
+            alert(`You have successfully purchased ${amount} Aura Coins!`);
+            window.location.href = "#payment-redirect";
+            initiatePaymentRedirect();
+        }
+
+        function simulateCardBalanceCheck() {
+            // Simulate a random card balance between 500 and 2000 for demonstration
+            return Math.floor(Math.random() * 1500) + 500;
+        }
+
+        function initiatePaymentRedirect() {
+            // Redirect to the actual payment gateway after a delay
+            setTimeout(() => {
+                window.location.href = "https://your-payment-gateway-url.com";
+            }, 3000);
+        }
+    </script>
+
+    <!-- Payment Redirect Page -->
+    <div id="payment-redirect" class="container">
+        <h1>Redirecting to Payment</h1>
+        <p>Thank you for your interest in Aura Coin! You are being redirected to our secure payment gateway.</p>
+        <p>If you are not redirected automatically, click the button below:</p>
+        <a href="https://your-payment-gateway-url.com" class="redirect-button">Proceed to Payment</a>
+    </div>
+
+</body>
+</html>
